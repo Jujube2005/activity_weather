@@ -17,19 +17,25 @@ class ActivityListPage extends StatelessWidget {
         title: const Text('กิจกรรม'),
       ),
       
-body: ListView.builder(
-  itemCount: activities.length,
-  itemBuilder: (context, index) {
-    final activity = activities[index];
 
-    return ListTile(
-      leading: const Icon(Icons.calendar_month),
-      title: Text(activity['title']!),
-      subtitle: Text(activity['date']!),
-      trailing: const Icon(Icons.arrow_forward),
-    );
-  },
-),
+body: activities.isEmpty
+    ? const Center(
+        child: Text('ยังไม่มีกิจกรรม'),
+      )
+    : ListView.builder(
+        itemCount: activities.length,
+        itemBuilder: (context, index) {
+          final activity = activities[index];
+
+          return ListTile(
+            leading: const Icon(Icons.calendar_month),
+            title: Text(activity['title']!),
+            subtitle: Text(activity['date']!),
+            trailing: const Icon(Icons.arrow_forward),
+          );
+        },
+      ),
+
 
     );
   }
