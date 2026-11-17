@@ -5,21 +5,9 @@ class ActivityListPage extends StatelessWidget {
   const ActivityListPage({super.key});
 
   static const List<Map<String, String>> activities = [
-    {
-      'title': 'เดินเล่น',
-      'date': '24 ต.ค. 2026',
-      'detail': 'เดินเล่นในสวนใกล้บ้าน ประมาณ 30 นาที',
-    },
-    {
-      'title': 'อ่านหนังสือ',
-      'date': '23 ต.ค. 2026',
-      'detail': 'อ่านหนังสือเป็นเวลา 20 นาที',
-    },
-    {
-      'title': 'ออกกำลัง',
-      'date': '22 ต.ค. 2026',
-      'detail': 'ออกกำลังกายและยืดกล้ามเนื้อ',
-    },
+    {'title': 'เดินเล่น', 'date': '24 ต.ค. 2026', 'detail': 'เดินในสวน'},
+    {'title': 'อ่านหนังสือ', 'date': '23 ต.ค. 2026', 'detail': 'อ่าน 20 นาที'},
+    {'title': 'ออกกำลัง', 'date': '22 ต.ค. 2026', 'detail': 'ยืดกล้ามเนื้อ'},
   ];
 
   @override
