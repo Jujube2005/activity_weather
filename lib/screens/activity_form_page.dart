@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class ActivityFormPage extends StatefulWidget {
@@ -32,20 +31,18 @@ class _ActivityFormPageState extends State<ActivityFormPage> {
 
   void _validateForm() {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('ข้อมูลถูกต้อง ผ่านการตรวจสอบ'),
-        ),
-      );
+      Navigator.pop(context, {
+        'title': titleController.text.trim(),
+        'category': selectedCategory,
+        'note': noteController.text.trim(),
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('เพิ่มกิจกรรม'),
-      ),
+      appBar: AppBar(title: const Text('เพิ่มกิจกรรม')),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -55,9 +52,7 @@ class _ActivityFormPageState extends State<ActivityFormPage> {
               // ชื่อกิจกรรม
               TextFormField(
                 controller: titleController,
-                decoration: const InputDecoration(
-                  labelText: 'ชื่อกิจกรรม',
-                ),
+                decoration: const InputDecoration(labelText: 'ชื่อกิจกรรม'),
                 validator: (value) {
                   final title = (value ?? '').trim();
 
@@ -78,9 +73,7 @@ class _ActivityFormPageState extends State<ActivityFormPage> {
               // หมวดหมู่
               DropdownButtonFormField<String>(
                 value: selectedCategory,
-                decoration: const InputDecoration(
-                  labelText: 'หมวดหมู่',
-                ),
+                decoration: const InputDecoration(labelText: 'หมวดหมู่'),
                 items: categories.map((category) {
                   return DropdownMenuItem(
                     value: category,

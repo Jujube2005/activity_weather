@@ -3,10 +3,16 @@ import 'package:flutter/material.dart';
 import 'activity_detail_page.dart';
 import 'activity_form_page.dart';
 
-class ActivityListPage extends StatelessWidget {
+class ActivityListPage extends StatefulWidget {
   const ActivityListPage({super.key});
 
-  static const List<Map<String, String>> activities = [
+  @override
+  State<ActivityListPage> createState() => _ActivityListPageState();
+}
+
+class _ActivityListPageState extends State<ActivityListPage> {
+
+  final List<Map<String, String>> activities = [
     {
       'title': 'เที่ยวรอบโลก',
       'date': '27 ต.ค. 2026',
@@ -55,14 +61,19 @@ class ActivityListPage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
-            tooltip: 'เพิ่มกิจกรรม',
-            onPressed: () {
-              Navigator.push<void>(
+            onPressed: () async {
+              final result = await Navigator.push<Map<String, String>>(
                 context,
-                MaterialPageRoute<void>(
+                MaterialPageRoute(
                   builder: (context) => const ActivityFormPage(),
                 ),
               );
+
+              if (result != null) {
+                setState(() {
+                  activities.add(result);
+                });
+              }
             },
           ),
         ],
