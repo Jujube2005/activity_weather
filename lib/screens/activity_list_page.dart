@@ -11,7 +11,6 @@ class ActivityListPage extends StatefulWidget {
 }
 
 class _ActivityListPageState extends State<ActivityListPage> {
-
   final List<Map<String, String>> activities = [
     {
       'title': 'เที่ยวรอบโลก',
@@ -61,6 +60,7 @@ class _ActivityListPageState extends State<ActivityListPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
+            tooltip: 'เพิ่มกิจกรรม',
             onPressed: () async {
               final result = await Navigator.push<Map<String, String>>(
                 context,
@@ -71,7 +71,11 @@ class _ActivityListPageState extends State<ActivityListPage> {
 
               if (result != null) {
                 setState(() {
-                  activities.add(result);
+                  activities.add({
+                    'title': result['title']!,
+                    'date': DateTime.now().toString().substring(0, 10),
+                    'detail': result['note']!,
+                  });
                 });
               }
             },
