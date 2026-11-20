@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'activity_detail_page.dart';
+import 'activity_form_page.dart';
 
 class ActivityListPage extends StatelessWidget {
   const ActivityListPage({super.key});
@@ -49,8 +50,23 @@ class ActivityListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('กิจกรรม')),
-
+      appBar: AppBar(
+        title: const Text('กิจกรรม'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            tooltip: 'เพิ่มกิจกรรม',
+            onPressed: () {
+              Navigator.push<void>(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (context) => const ActivityFormPage(),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
       body: activities.isEmpty
           ? const Center(child: Text('ยังไม่มีกิจกรรม'))
           : ListView.builder(
