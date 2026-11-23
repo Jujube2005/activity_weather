@@ -11,7 +11,6 @@ class ActivityListPage extends StatefulWidget {
 }
 
 class _ActivityListPageState extends State<ActivityListPage> {
-
   final List<Map<String, String>> activities = [
     {
       'title': 'เที่ยวรอบโลก',
@@ -53,37 +52,31 @@ class _ActivityListPageState extends State<ActivityListPage> {
     },
   ];
 
+  Future<void> _openAddActivityForm() async {
+    final result = await Navigator.push<Map<String, String>>(
+      context,
+      MaterialPageRoute(builder: (context) => const ActivityFormPage()),
+    );
+
+    if (result != null) {
+      setState(() {
+        activities.add(result);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('กิจกรรม'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () async {
-              final result = await Navigator.push<Map<String, String>>(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ActivityFormPage(),
-                ),
-              );
+      appBar: AppBar(title: const Text('กิจกรรม')),
 
-              if (result != null) {
-                setState(() {
-                  activities.add(result);
-                });
-              }
-            },
-          ),
-        ],
-      ),
       body: activities.isEmpty
           ? const Center(child: Text('ยังไม่มีกิจกรรม'))
           : ListView.builder(
               itemCount: activities.length,
               itemBuilder: (context, index) {
                 final activity = activities[index];
+
                 return InkWell(
                   onTap: () {
                     Navigator.push<void>(
@@ -107,6 +100,11 @@ class _ActivityListPageState extends State<ActivityListPage> {
                 );
               },
             ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: _openAddActivityForm,
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
