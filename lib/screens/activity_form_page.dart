@@ -118,7 +118,7 @@ class _ActivityFormPageState extends State<ActivityFormPage> {
 
               ElevatedButton(
                 onPressed: _validateForm,
-                child: const Text('ตรวจสอบข้อมูล'),
+                child: const Text('บันทึกแบบร่าง'),
               ),
             ],
           ),
