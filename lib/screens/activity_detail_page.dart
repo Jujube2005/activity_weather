@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class ActivityDetailPage extends StatelessWidget {
@@ -12,15 +13,22 @@ class ActivityDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(activity['title']!),
+        title: Text(
+          activity['title']!,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 16),
-            Text(activity['detail']!),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Text(
+            activity['detail']!,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 18,
+            ),
+          ),
         ),
       ),
     );
